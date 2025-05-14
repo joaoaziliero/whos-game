@@ -35,16 +35,30 @@ public class Player : MonoBehaviour
 
             OnMoveTiltPlayer(force, point);
         }
+
+        MovePlayer();
     }
 
-    private void AdjustCenterOfMass(Vector2 centerPoint)
+    private void MovePlayer()
     {
-        player.centerOfMass = centerPoint;
+        if (!Input.GetKey(up) && !Input.GetKey(down))
+        {
+            transform.Translate(Time.deltaTime * speed * Input.GetAxis("Horizontal") * Vector3.right);
+        }
+        else if (!Input.GetKey(left) && !Input.GetKey(right))
+        {
+            transform.Translate(Time.deltaTime * speed * Input.GetAxis("Vertical") * Vector3.up);
+        }
     }
 
     private void OnMoveTiltPlayer(Vector2 tiltForce, Vector3 tiltPoint)
     {
         player.AddForceAtPosition(tiltForce, tiltPoint, ForceMode2D.Impulse);
+    }
+
+    private void AdjustCenterOfMass(Vector2 centerPoint)
+    {
+        player.centerOfMass = centerPoint;
     }
 
     private int GetHorizontalMotion()
