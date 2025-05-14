@@ -351,8 +351,8 @@ GameObject:
   - component: {fileID: 839561443}
   - component: {fileID: 839561442}
   - component: {fileID: 839561441}
-  - component: {fileID: 839561445}
   - component: {fileID: 839561446}
+  - component: {fileID: 839561445}
   m_Layer: 0
   m_Name: Tardis
   m_TagString: Untagged
@@ -486,6 +486,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306ed671b1929d549bee845f39bc1545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 839561441}
+  speed: 5
+  tiltForce: 2
+  tiltOffset: 0.5
+  centerOfMass: {x: 0, y: -1}
+  up: 119
+  down: 115
+  left: 97
+  right: 100
 --- !u!233 &839561446
 HingeJoint2D:
   m_ObjectHideFlags: 0
