@@ -36,7 +36,10 @@ public class Player : MonoBehaviour
             OnMoveTiltPlayer(force, point);
         }
 
-        MovePlayer();
+        // Para evitar cálculos desnecessários no método MovePlayer()
+        // caso as teclas de movimento estejam inativas:
+        if (!Input.GetKey(KeyCode.None))
+            MovePlayer();
     }
 
     private void MovePlayer()
