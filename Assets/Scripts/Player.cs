@@ -1,34 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Player Reference")]
-    public Rigidbody2D player;
-
     [Header("Player Settings")]
     public float speed;
+    public float axisChangeThreshold;
     public float tiltForce;
     public float tiltOffset;
     public Vector2 centerOfMass;
 
-    [Header("Keyboard Input")]
-    public KeyCode up;
-    public KeyCode down;
+    [Header("Horizontal Axis Keys")]
     public KeyCode left;
     public KeyCode right;
 
+    private Rigidbody2D player;
+    private HingeJoint2D joint;
+    private Velocimeter2D velocimeter;
+
     private void Awake()
     {
-        AdjustCenterOfMass(centerOfMass);
+        player = GetComponent<Rigidbody2D>();
+        player.centerOfMass = centerOfMass;
+        joint = GetComponent<HingeJoint2D>();
+    }
+
+    private void Start()
+    {
+        velocimeter = GetComponent<Velocimeter2D>() == null ?
+            gameObject.AddComponent<Velocimeter2D>():
+            gameObject.GetComponent<Velocimeter2D>();
     }
 
     private void Update()
     {
         var sign = GetHorizontalMotion();
 
-        if (sign != 0)
+        if (sign != 0 && joint.enabled)
         {
             var force = sign * tiltForce * Vector2.right;
             var point = transform.position + tiltOffset * Vector3.up;
@@ -38,30 +45,29 @@ public class Player : MonoBehaviour
 
         // Para evitar cálculos desnecessários no método MovePlayer()
         // caso as teclas de movimento estejam inativas:
-        if (!Input.GetKey(KeyCode.None))
+        if (Input.GetKey(KeyCode.None) == false)
             MovePlayer();
     }
 
     private void MovePlayer()
     {
-        if (!Input.GetKey(up) && !Input.GetKey(down))
+        var horizontalInput = Input.GetAxis("Horizontal");
+        var verticalInput = Input.GetAxis("Vertical");
+
+        if (horizontalInput != 0 && Mathf.Abs(velocimeter.measurement.y) <= axisChangeThreshold)
         {
-            transform.Translate(Time.deltaTime * speed * Input.GetAxis("Horizontal") * Vector3.right);
+            transform.Translate(Time.deltaTime * speed * horizontalInput * Vector3.right);
         }
-        else if (!Input.GetKey(left) && !Input.GetKey(right))
+        
+        if (verticalInput != 0 && Mathf.Abs(velocimeter.measurement.x) <= axisChangeThreshold)
         {
-            transform.Translate(Time.deltaTime * speed * Input.GetAxis("Vertical") * Vector3.up);
+            transform.Translate(Time.deltaTime * speed * verticalInput * Vector3.up);
         }
     }
 
     private void OnMoveTiltPlayer(Vector2 tiltForce, Vector3 tiltPoint)
     {
         player.AddForceAtPosition(tiltForce, tiltPoint, ForceMode2D.Impulse);
-    }
-
-    private void AdjustCenterOfMass(Vector2 centerPoint)
-    {
-        player.centerOfMass = centerPoint;
     }
 
     private int GetHorizontalMotion()
