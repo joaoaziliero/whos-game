@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWraparound : MonoBehaviour
@@ -14,7 +12,7 @@ public class PlayerWraparound : MonoBehaviour
 
         if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(pos.x) < Mathf.Abs(obj.position.x) && count == 1)
         {
-            var offset = Mathf.Sign(pos.x) * transform.localScale.x;
+            var offset = 2 * Mathf.Sign(pos.x) * Mathf.Abs(obj.position.x - pos.x);
             pos.x = (-1) * (pos.x + offset);
 
             var playerClone = Instantiate(gameObject);
