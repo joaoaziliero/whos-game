@@ -3,7 +3,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player Settings")]
-    public float speed;
+    public float speedX;
+    public float speedY;
     public float axisChangeThreshold;
     public float tiltForce;
     public float tiltOffset;
@@ -56,12 +57,12 @@ public class Player : MonoBehaviour
 
         if (horizontalInput != 0 && Mathf.Abs(velocimeter.measurement.y) <= axisChangeThreshold)
         {
-            transform.Translate(Time.deltaTime * speed * horizontalInput * Vector3.right);
+            transform.Translate(Time.deltaTime * speedX * horizontalInput * Vector3.right);
         }
         
         if (verticalInput != 0 && Mathf.Abs(velocimeter.measurement.x) <= axisChangeThreshold)
         {
-            transform.Translate(Time.deltaTime * speed * verticalInput * Vector3.up);
+            transform.Translate(Time.deltaTime * speedY * verticalInput * Vector3.up);
         }
     }
 
