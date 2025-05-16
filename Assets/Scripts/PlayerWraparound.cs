@@ -8,7 +8,7 @@ public class PlayerWraparound : MonoBehaviour
     {
         var obj = collision.transform;
         var pos = transform.position;
-        var count = GameObject.FindGameObjectsWithTag(transform.tag).Length;
+        var count = CountPlayerInstances();
 
         if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(pos.x) < Mathf.Abs(obj.position.x) && count == 1)
         {
@@ -17,7 +17,6 @@ public class PlayerWraparound : MonoBehaviour
 
             var playerClone = Instantiate(gameObject);
             playerClone.transform.position = pos;
-            // playerClone.name = gameObject.name;
         }
     }
 
@@ -25,10 +24,16 @@ public class PlayerWraparound : MonoBehaviour
     {
         var obj = collision.transform;
         var pos = transform.position;
+        var count = CountPlayerInstances();
 
-        if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(pos.x) > Mathf.Abs(obj.position.x))
+        if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(pos.x) > Mathf.Abs(obj.position.x) && count > 1)
         {
             Destroy(gameObject);
         }
+    }
+
+    private int CountPlayerInstances()
+    {
+        return GameObject.FindGameObjectsWithTag(transform.tag).Length;
     }
 }
