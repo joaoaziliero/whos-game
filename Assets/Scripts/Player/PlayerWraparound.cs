@@ -17,10 +17,6 @@ public class PlayerWraparound : MonoBehaviour
 
             var playerClone = Instantiate(gameObject);
             playerClone.transform.position = pos;
-
-#if UNITY_EDITOR
-            playerClone.name = gameObject.name;
-#endif
         }
     }
 
