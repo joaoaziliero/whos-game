@@ -4,8 +4,9 @@ public class Player : MonoBehaviour
 {
     [Header("Player Settings")]
     public float speedX;
+    public float changeToVerticalAxisThreshold;
     public float speedY;
-    public float axisChangeThreshold;
+    public float changeToHorizontalAxisThreshold;
     public float tiltForce;
     public float tiltOffset;
     public Vector2 centerOfMass;
@@ -55,12 +56,12 @@ public class Player : MonoBehaviour
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
 
-        if (horizontalInput != 0 && Mathf.Abs(velocimeter.measurement.y) <= axisChangeThreshold)
+        if (horizontalInput != 0 && Mathf.Abs(velocimeter.measurement.y) <= changeToHorizontalAxisThreshold)
         {
             transform.Translate(Time.deltaTime * speedX * horizontalInput * Vector3.right);
         }
         
-        if (verticalInput != 0 && Mathf.Abs(velocimeter.measurement.x) <= axisChangeThreshold)
+        if (verticalInput != 0 && Mathf.Abs(velocimeter.measurement.x) <= changeToVerticalAxisThreshold)
         {
             transform.Translate(Time.deltaTime * speedY * verticalInput * Vector3.up);
         }
