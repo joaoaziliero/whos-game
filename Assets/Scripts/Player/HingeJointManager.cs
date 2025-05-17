@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CollisionManager : MonoBehaviour
+public class HingeJointManager : MonoBehaviour
 {
     public string obstacleTag;
 
