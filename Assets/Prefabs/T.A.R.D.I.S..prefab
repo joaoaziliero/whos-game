@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1689298352496057940}
   - component: {fileID: 1689298352496057945}
   - component: {fileID: 1689298352496057942}
+  - component: {fileID: 8263659620621000051}
   m_Layer: 0
   m_Name: T.A.R.D.I.S.
   m_TagString: Player
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -80604229
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 100fa33d291f38a4986e3541b21cc0e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -208,3 +209,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleTag: Block
+--- !u!114 &8263659620621000051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689298352496057937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a8dd74a24aaa74fb0840dc6352e68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
