@@ -7,6 +7,13 @@ public class HealthManager : MonoBehaviour
     public float damageFeedbackDuration;
     public Color damageFeedbackColor;
 
+    private Coroutine flashColorRoutine;
+
+    private void Awake()
+    {
+        flashColorRoutine = null;
+    }
+
     private void Update()
     {
         if (healthPoints <= 0)
@@ -23,7 +30,10 @@ public class HealthManager : MonoBehaviour
 
     public virtual void OnDamage()
     {
-        StartCoroutine(FlashColor(GetComponent<SpriteRenderer>()));
+        if (flashColorRoutine == null)
+        {
+            flashColorRoutine = StartCoroutine(FlashColor(GetComponent<SpriteRenderer>()));
+        }
     }
 
     public virtual void OnDeath()
@@ -53,5 +63,6 @@ public class HealthManager : MonoBehaviour
         }
 
         renderer.color = originalColor;
+        flashColorRoutine = null;
     }
 }
