@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DalekMover : MonoBehaviour
 {
+    public bool isFlipped { get; private set; }
+
     public float horizontalSpeed;
     public List<string> obstacleTags;
 
-    private SpriteRenderer spriteRenderer;
-
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        isFlipped = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,7 +29,7 @@ public class DalekMover : MonoBehaviour
 
     private void FlipMovementDirection()
     {
-        spriteRenderer.flipX = !spriteRenderer.flipX;
-        horizontalSpeed = -horizontalSpeed;
+        transform.rotation = Quaternion.Euler(new Vector3(0, -transform.eulerAngles.y + 180, 0));
+        isFlipped = !isFlipped;
     }
 }
