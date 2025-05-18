@@ -53,11 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3727568155607442004, guid: ddf1de16e0b754346b0e1494a6aa55fc, type: 3}
       propertyPath: m_Name
-      value: Dalek (Mirrored)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3727568155607442014, guid: ddf1de16e0b754346b0e1494a6aa55fc, type: 3}
-      propertyPath: horizontalSpeed
-      value: -3
+      value: Dalek (Mirrored) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4511604185905086033, guid: ddf1de16e0b754346b0e1494a6aa55fc, type: 3}
       propertyPath: angleBetweenShots

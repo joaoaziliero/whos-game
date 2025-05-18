@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4779537304781913283}
-  - component: {fileID: 4511604185905086033}
   - component: {fileID: 7251903161941143859}
+  - component: {fileID: 4511604185905086033}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -33,22 +33,6 @@ Transform:
   m_Father: {fileID: 3727568155607442002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4511604185905086033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3333584517907089134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1358418360002a242a60eab0751d1a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialAngleOfAim: 210
-  angleBetweenShots: -30
-  intervalBetweenShots: 3
-  shotsPerCycle: 3
 --- !u!120 &7251903161941143859
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -148,6 +132,24 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &4511604185905086033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3333584517907089134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1358418360002a242a60eab0751d1a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+  damageAmount: 1
+  initialAngleOfAim: 210
+  angleBetweenShots: -30
+  intervalBetweenShots: 3
+  shotsPerCycle: 3
 --- !u!1 &3727568155607442004
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc27660e4d64fbd4196afe51d2bb920f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 0
+  horizontalSpeed: -5
   obstacleTags:
   - Block
   - Enemy
