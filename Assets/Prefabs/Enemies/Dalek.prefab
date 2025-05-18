@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 3727568155607442000}
   - component: {fileID: 3727568155607442003}
   - component: {fileID: 3727568155607442014}
+  - component: {fileID: 1367955396799067683}
   m_Layer: 2
   m_Name: Dalek
   m_TagString: Enemy
@@ -324,3 +325,18 @@ MonoBehaviour:
   obstacleTags:
   - Block
   - Enemy
+--- !u!114 &1367955396799067683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3727568155607442004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bcd17e176fa9540b4803b9354c0e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 2
+  damageFeedbackDuration: 0.5
+  damageFeedbackColor: {r: 1, g: 0, b: 0, a: 1}

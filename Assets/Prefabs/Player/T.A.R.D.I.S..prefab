@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1689298352496057940}
   - component: {fileID: 1689298352496057945}
   - component: {fileID: 1689298352496057942}
+  - component: {fileID: 8414703669078903305}
   - component: {fileID: 8263659620621000051}
   m_Layer: 0
   m_Name: T.A.R.D.I.S.
@@ -209,6 +210,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleTag: Block
+--- !u!114 &8414703669078903305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689298352496057937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9026969946205f94fb868a71c6b08067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 10
+  damageFeedbackDuration: 0.5
+  damageFeedbackColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &8263659620621000051
 MonoBehaviour:
   m_ObjectHideFlags: 0
