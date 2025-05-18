@@ -46,7 +46,7 @@ public class Gun : MonoBehaviour
         DealDamage(hit);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         StopCoroutine(rotationCoroutine);
         StopCoroutine(damageControlCoroutine);
@@ -62,7 +62,7 @@ public class Gun : MonoBehaviour
     {
         var obj = hit.collider.gameObject;
 
-        if (obj.CompareTag(playerTag) && canDamage)
+        if (obj != null && obj.CompareTag(playerTag) && canDamage)
         {
             obj.GetComponent<HealthManager>().UpdateHealth(-damageAmount);
             canDamage = false;
