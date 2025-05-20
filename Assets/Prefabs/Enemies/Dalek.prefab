@@ -341,3 +341,4 @@ MonoBehaviour:
   damageFeedbackDuration: 0.5
   damageFeedbackColor: {r: 1, g: 0, b: 0, a: 1}
   baselineColor: {r: 1, g: 1, b: 1, a: 1}
+  destroyAfterSeconds: 3
