@@ -6,11 +6,15 @@ public class HealthManager : MonoBehaviour
     public float healthPoints;
     public float damageFeedbackDuration;
     public Color damageFeedbackColor;
+    public Color baselineColor;
 
+    private SpriteRenderer spriteRenderer;
     private Coroutine flashColorRoutine;
 
     private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = baselineColor;
         flashColorRoutine = null;
     }
 
@@ -18,6 +22,12 @@ public class HealthManager : MonoBehaviour
     {
         if (healthPoints <= 0)
             OnDeath();
+    }
+
+    private void OnDisable()
+    {
+        if (flashColorRoutine != null)
+            StopCoroutine(flashColorRoutine);
     }
 
     public void UpdateHealth(float amount)
@@ -32,7 +42,7 @@ public class HealthManager : MonoBehaviour
     {
         if (flashColorRoutine == null)
         {
-            flashColorRoutine = StartCoroutine(FlashColor(GetComponent<SpriteRenderer>()));
+            flashColorRoutine = StartCoroutine(FlashColor(spriteRenderer));
         }
     }
 
@@ -50,7 +60,7 @@ public class HealthManager : MonoBehaviour
 
         while (t < halfTotalTime)
         {
-            renderer.color = originalColor + colorDiff * (t / halfTotalTime);
+            renderer.color += colorDiff * (t / halfTotalTime);
             t += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

@@ -227,6 +227,7 @@ MonoBehaviour:
   healthPoints: 20
   damageFeedbackDuration: 0.25
   damageFeedbackColor: {r: 1, g: 0, b: 0, a: 1}
+  baselineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &5281625946552670527
 MonoBehaviour:
   m_ObjectHideFlags: 0
