@@ -61,7 +61,7 @@ public class Gun : MonoBehaviour
     {
         var obj = hit.collider.gameObject;
 
-        if (obj != null && obj.CompareTag(playerTag) && canDamage)
+        if (obj.CompareTag(playerTag) && canDamage)
         {
             obj.GetComponent<HealthManager>().UpdateHealth(-damageAmount);
             canDamage = false;
