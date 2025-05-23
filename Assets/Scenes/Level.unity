@@ -303,8 +303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659be085a27545145a58bd29ee65f793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenEdgeTag: Boundary
   playerCounterpart: {fileID: 1689298353274374165}
+  counterpartFreeingThreshold: 0.5
+  screenWidth: 17.8
+  screenEdgeTag: Boundary
 --- !u!114 &1346542988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1346542992}
   player: {fileID: 1346542988}
-  canBodyRotate: 0
+  selfIsIndependent: 0
 --- !u!233 &1346542990
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -804,8 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659be085a27545145a58bd29ee65f793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenEdgeTag: Boundary
   playerCounterpart: {fileID: 1346542986}
+  counterpartFreeingThreshold: 0.5
+  screenWidth: 17.8
+  screenEdgeTag: Boundary
 --- !u!114 &1689298353274374169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,7 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1689298353274374164}
   player: {fileID: 1689298353274374169}
-  canBodyRotate: 1
+  selfIsIndependent: 0
 --- !u!114 &1689298353274374171
 MonoBehaviour:
   m_ObjectHideFlags: 0

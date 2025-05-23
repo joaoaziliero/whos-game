@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class PlayerWraparound : MonoBehaviour
 {
-    public string screenEdgeTag;
     public GameObject playerCounterpart;
+    public float counterpartFreeingThreshold;
+    public float screenWidth;
+    public string screenEdgeTag;
 
     private FreedomDegreesManager selfFreedom;
     private FreedomDegreesManager counterpartFreedom;
@@ -20,33 +22,24 @@ public class PlayerWraparound : MonoBehaviour
 
         if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) < Mathf.Abs(obj.position.x))
         {
-            //counterpartFreedom.FreezeBody();
-            //counterpartFreedom.AllowControl(false);
+            CauseTransformImitation();
+            counterpartFreedom.FreezeBody();
 
-            var pos = Vector2.zero;
-            pos.x = transform.position.x - Mathf.Sign(transform.position.x) * 17.8f;
-            pos.y = transform.position.y;
-            playerCounterpart.transform.position = pos;
+            selfFreedom.SetMasterStatus(true);
+            counterpartFreedom.SetMasterStatus(false);
 
-            playerCounterpart.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles);
-
-            counterpartFreedom.FreezeRotation();
             playerCounterpart.SetActive(true);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag(screenEdgeTag) && selfFreedom.canBodyRotate)
-        {
-            playerCounterpart.transform.position = new Vector2(transform.position.x - Mathf.Sign(transform.position.x) * 17.8f, transform.position.y);
-            playerCounterpart.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles);
+        var obj = collision.transform;
 
-            if (Mathf.Abs(transform.position.x) - 0.5f >= Mathf.Abs(collision.transform.position.x))
-            {
-                counterpartFreedom.Unfreeze();
-                selfFreedom.canBodyRotate = false;
-            }
+        if (obj.CompareTag(screenEdgeTag) && selfFreedom.isMasterObject)
+        {
+            CauseTransformImitation();
+            SetCounterpartFree(obj, counterpartFreeingThreshold);
         }
     }
 
@@ -56,9 +49,33 @@ public class PlayerWraparound : MonoBehaviour
 
         if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) > Mathf.Abs(obj.position.x))
         {
-            //counterpartFreedom.UnfreezeBody();
-            //counterpartFreedom.AllowControl(true);
             gameObject.SetActive(false);
         }
+    }
+
+    private void CauseTransformImitation()
+    {
+        var position = TransposePosition(transform.position, screenWidth);
+        var rotation = transform.rotation;
+
+        playerCounterpart.transform.SetPositionAndRotation(position, rotation);
+    }
+
+    private void SetCounterpartFree(Transform screenEdge, float threshold)
+    {
+        if (Mathf.Abs(transform.position.x) - threshold >= Mathf.Abs(screenEdge.position.x))
+        {
+            counterpartFreedom.Unfreeze();
+            selfFreedom.SetMasterStatus(false);
+        }
+    }
+
+    private Vector2 TransposePosition(Vector2 position, float horizontalDistance)
+    {
+        return new Vector2()
+        {
+            x = position.x - Mathf.Sign(position.x) * horizontalDistance,
+            y = position.y,
+        };
     }
 }
