@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        var sign = GetHorizontalMotion();
+        var sign = GetHorizontalOrientation();
 
         if (sign != 0 && joint.enabled)
         {
@@ -72,13 +72,13 @@ public class Player : MonoBehaviour
         player.AddForceAtPosition(tiltForce, tiltPoint, ForceMode2D.Impulse);
     }
 
-    private int GetHorizontalMotion()
+    private int GetHorizontalOrientation()
     {
         if (Input.GetKeyDown(left))
             return -1;
-        else if (Input.GetKeyDown(right))
+        if (Input.GetKeyDown(right))
             return +1;
-        else
-            return +0;
+
+        return 0;
     }
 }
