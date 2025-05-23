@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Velocimeter2D : MonoBehaviour
 {
-    public Vector2 measurement { get; private set; }
+    public Vector2 measurement;
     private Vector3 previousPosition;
 
     private void Awake()
