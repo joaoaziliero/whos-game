@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 1346542988}
   - component: {fileID: 1346542987}
   - component: {fileID: 1346542995}
+  - component: {fileID: 1346542996}
   m_Layer: 0
   m_Name: T.A.R.D.I.S.
   m_TagString: Player
@@ -320,14 +321,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedX: 5
-  changeToVerticalAxisThreshold: 4
+  thresholdToGoVertical: 4
   speedY: 5
-  changeToHorizontalAxisThreshold: 4
-  tiltForce: 2
-  tiltOffset: 0.75
-  centerOfMass: {x: 0, y: -1.5}
-  left: 97
-  right: 100
+  thresholdToGoHorizontal: 4
 --- !u!114 &1346542989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,8 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1346542992}
-  player: {fileID: 1346542988}
-  selfIsIndependent: 0
+  isTransformDependent: 0
 --- !u!233 &1346542990
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -494,6 +489,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleTag: Block
+--- !u!114 &1346542996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346542986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7d9f3ecb86dc544a096e5e4ead735d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiltForce: 2
+  tiltHeight: 0.75
+  playerCenterOfMass: {x: 0, y: -1.5}
+  left: 97
+  right: 100
 --- !u!1001 &1601765111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -709,6 +721,7 @@ GameObject:
   - component: {fileID: 1689298353274374169}
   - component: {fileID: 1689298353274374168}
   - component: {fileID: 1689298353274374171}
+  - component: {fileID: 1689298353274374172}
   m_Layer: 0
   m_Name: T.A.R.D.I.S.
   m_TagString: Player
@@ -823,14 +836,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedX: 5
-  changeToVerticalAxisThreshold: 4
+  thresholdToGoVertical: 4
   speedY: 5
-  changeToHorizontalAxisThreshold: 4
-  tiltForce: 2
-  tiltOffset: 0.75
-  centerOfMass: {x: 0, y: -1.5}
-  left: 97
-  right: 100
+  thresholdToGoHorizontal: 4
 --- !u!114 &1689298353274374170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,8 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1689298353274374164}
-  player: {fileID: 1689298353274374169}
-  selfIsIndependent: 0
+  isTransformDependent: 0
 --- !u!114 &1689298353274374171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,3 +866,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleTag: Block
+--- !u!114 &1689298353274374172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689298353274374165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7d9f3ecb86dc544a096e5e4ead735d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiltForce: 2
+  tiltHeight: 0.75
+  playerCenterOfMass: {x: 0, y: -1.5}
+  left: 97
+  right: 100
