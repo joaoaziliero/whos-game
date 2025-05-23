@@ -3,7 +3,7 @@ using UnityEngine;
 public class FreedomDegreesManager : MonoBehaviour
 {
     public Rigidbody2D rigidBody;
-    public bool isMasterObject;
+    public bool isTransformDependent;
 
     public void FreezeBody()
     {
@@ -15,8 +15,8 @@ public class FreedomDegreesManager : MonoBehaviour
         rigidBody.constraints = RigidbodyConstraints2D.None;
     }
 
-    public void SetMasterStatus(bool status)
+    public void SetDependenceStatus(bool status)
     {
-        isMasterObject = status;
+        isTransformDependent = status;
     }
 }

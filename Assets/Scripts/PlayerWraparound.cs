@@ -7,12 +7,10 @@ public class PlayerWraparound : MonoBehaviour
     public float screenWidth;
     public string screenEdgeTag;
 
-    private FreedomDegreesManager selfFreedom;
     private FreedomDegreesManager counterpartFreedom;
 
     private void Awake()
     {
-        selfFreedom = GetComponent<FreedomDegreesManager>();
         counterpartFreedom = playerCounterpart.GetComponent<FreedomDegreesManager>();
     }
 
@@ -24,10 +22,7 @@ public class PlayerWraparound : MonoBehaviour
         {
             CauseTransformImitation();
             counterpartFreedom.FreezeBody();
-
-            selfFreedom.SetMasterStatus(true);
-            counterpartFreedom.SetMasterStatus(false);
-
+            counterpartFreedom.SetDependenceStatus(true);
             playerCounterpart.SetActive(true);
         }
     }
@@ -36,7 +31,7 @@ public class PlayerWraparound : MonoBehaviour
     {
         var obj = collision.transform;
 
-        if (obj.CompareTag(screenEdgeTag) && selfFreedom.isMasterObject)
+        if (obj.CompareTag(screenEdgeTag) && counterpartFreedom.isTransformDependent)
         {
             CauseTransformImitation();
             SetCounterpartFree(obj, counterpartFreeingThreshold);
@@ -66,7 +61,7 @@ public class PlayerWraparound : MonoBehaviour
         if (Mathf.Abs(transform.position.x) - threshold >= Mathf.Abs(screenEdge.position.x))
         {
             counterpartFreedom.Unfreeze();
-            selfFreedom.SetMasterStatus(false);
+            counterpartFreedom.SetDependenceStatus(false);
         }
     }
 
