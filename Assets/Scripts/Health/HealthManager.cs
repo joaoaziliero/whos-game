@@ -53,26 +53,29 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator FlashColor(SpriteRenderer renderer)
     {
-        var originalColor = renderer.color;
-        var colorDiff = damageFeedbackColor - originalColor;
+        var currentColor = renderer.color;
+        var colorDiff = damageFeedbackColor - currentColor;
         var halfTotalTime = damageFeedbackDuration / 2;
         var t = 0.0f;
 
         while (t < halfTotalTime)
         {
-            renderer.color += colorDiff * (t / halfTotalTime);
+            renderer.color = currentColor + colorDiff * (t / halfTotalTime);
             t += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
-        while (t > 0)
+        currentColor = renderer.color;
+        t = 0.0f;
+
+        while (t < damageFeedbackDuration)
         {
-            renderer.color -= colorDiff * (1 - (t / halfTotalTime));
-            t -= Time.deltaTime;
+            renderer.color = currentColor - colorDiff * (t / halfTotalTime);
+            t += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
-        renderer.color = originalColor;
+        renderer.color = baselineColor;
         flashColorRoutine = null;
     }
 }
