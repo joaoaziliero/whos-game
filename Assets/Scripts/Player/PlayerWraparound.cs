@@ -20,8 +20,7 @@ public class PlayerWraparound : MonoBehaviour
 
         if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) < Mathf.Abs(obj.position.x))
         {
-            CauseTransformImitation();
-            counterpartFreedom.FreezeBody();
+            TranslateCounterpart();
             counterpartFreedom.SetDependenceStatus(true);
             playerCounterpart.SetActive(true);
         }
@@ -33,7 +32,7 @@ public class PlayerWraparound : MonoBehaviour
 
         if (obj.CompareTag(screenEdgeTag) && counterpartFreedom.isTransformDependent)
         {
-            CauseTransformImitation();
+            TranslateCounterpart();
             SetCounterpartFree(obj, counterpartFreeingThreshold);
         }
     }
@@ -42,13 +41,13 @@ public class PlayerWraparound : MonoBehaviour
     {
         var obj = collision.transform;
 
-        if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) > Mathf.Abs(obj.position.x))
+        if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) > Mathf.Abs(obj.position.x) && playerCounterpart.activeInHierarchy)
         {
             gameObject.SetActive(false);
         }
     }
 
-    private void CauseTransformImitation()
+    private void TranslateCounterpart()
     {
         var position = TransposePosition(transform.position, screenWidth);
         var rotation = transform.rotation;
@@ -60,7 +59,6 @@ public class PlayerWraparound : MonoBehaviour
     {
         if (Mathf.Abs(transform.position.x) - threshold >= Mathf.Abs(screenEdge.position.x))
         {
-            counterpartFreedom.Unfreeze();
             counterpartFreedom.SetDependenceStatus(false);
         }
     }
