@@ -19,9 +19,6 @@ public class FrictionManager : MonoBehaviour
         if (collision.gameObject.CompareTag(playerTag))
         {
             var player = collision.gameObject.GetComponent<Player>();
-
-            player.speedX -= horizontalSpeedDifference;
-            player.speedY -= verticalSpeedDifference;
         }
     }
 
@@ -30,9 +27,6 @@ public class FrictionManager : MonoBehaviour
         if (collision.gameObject.CompareTag(playerTag))
         {
             var player = collision.gameObject.GetComponent<Player>();
-
-            player.speedX += horizontalSpeedDifference;
-            player.speedY += verticalSpeedDifference;
         }
     }
 }
