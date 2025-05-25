@@ -26,18 +26,25 @@ public class PlayerWraparound : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag(screenEdgeTag) && counterpartFreedom.isTransformDependent)
+        if (collision.transform.CompareTag(screenEdgeTag) == false)
+        {
+            return;
+        }
+        else if (Mathf.Abs(transform.position.x) - counterpartFreeingThreshold >= Mathf.Abs(collision.transform.position.x))
+        {
+            counterpartFreedom.SetDependenceStatus(false);
+        }
+        else if (counterpartFreedom.isTransformDependent)
         {
             TranslateCounterpart();
-            SetCounterpartFree(collision.transform, counterpartFreeingThreshold);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) > Mathf.Abs(collision.transform.position.x) && playerCounterpart.activeInHierarchy)
+        if (collision.transform.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) < Mathf.Abs(collision.transform.position.x))
         {
-            gameObject.SetActive(false);
+            playerCounterpart.SetActive(false);
         }
     }
 
@@ -47,14 +54,6 @@ public class PlayerWraparound : MonoBehaviour
         var rotation = transform.rotation;
 
         playerCounterpart.transform.SetPositionAndRotation(position, rotation);
-    }
-
-    private void SetCounterpartFree(Transform screenEdge, float threshold)
-    {
-        if (Mathf.Abs(transform.position.x) - threshold >= Mathf.Abs(screenEdge.position.x))
-        {
-            counterpartFreedom.SetDependenceStatus(false);
-        }
     }
 
     private Vector2 TransposePosition(Vector2 position, float horizontalDistance)
