@@ -40,6 +40,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1523192503372418291}
     m_Modifications:
+    - target: {fileID: 1228059711088121220, guid: 1318c23f31089f24f8f0bd8a212f462f, type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: cf260d8773456f043a7ba23171aa589b, type: 2}
     - target: {fileID: 1228059711088121221, guid: 1318c23f31089f24f8f0bd8a212f462f, type: 3}
       propertyPath: playerCounterpart
       value: 
@@ -111,6 +115,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1523192503372418291}
     m_Modifications:
+    - target: {fileID: 1228059711088121220, guid: 1318c23f31089f24f8f0bd8a212f462f, type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bacb76bb75ea4d4cb92dbffe9707096, type: 2}
     - target: {fileID: 1228059711088121221, guid: 1318c23f31089f24f8f0bd8a212f462f, type: 3}
       propertyPath: playerCounterpart
       value: 

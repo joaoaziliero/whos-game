@@ -16,9 +16,7 @@ public class PlayerWraparound : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var obj = collision.transform;
-
-        if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) < Mathf.Abs(obj.position.x))
+        if (collision.transform.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) < Mathf.Abs(collision.transform.position.x))
         {
             TranslateCounterpart();
             counterpartFreedom.SetDependenceStatus(true);
@@ -28,20 +26,16 @@ public class PlayerWraparound : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        var obj = collision.transform;
-
-        if (obj.CompareTag(screenEdgeTag) && counterpartFreedom.isTransformDependent)
+        if (collision.transform.CompareTag(screenEdgeTag) && counterpartFreedom.isTransformDependent)
         {
             TranslateCounterpart();
-            SetCounterpartFree(obj, counterpartFreeingThreshold);
+            SetCounterpartFree(collision.transform, counterpartFreeingThreshold);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        var obj = collision.transform;
-
-        if (obj.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) > Mathf.Abs(obj.position.x) && playerCounterpart.activeInHierarchy)
+        if (collision.transform.CompareTag(screenEdgeTag) && Mathf.Abs(transform.position.x) > Mathf.Abs(collision.transform.position.x) && playerCounterpart.activeInHierarchy)
         {
             gameObject.SetActive(false);
         }

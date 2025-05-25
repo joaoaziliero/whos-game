@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 1228059711088121223}
   - component: {fileID: 1228059711088121222}
   - component: {fileID: 1228059711088121220}
-  - component: {fileID: 1228059711088121221}
   - component: {fileID: 1228059711088121217}
+  - component: {fileID: 1228059711088121221}
+  - component: {fileID: 1992880879973773206}
   m_Layer: 0
   m_Name: T.A.R.D.I.S.
   m_TagString: Player
@@ -201,23 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ebce4f0e9344742a92b589e4df78cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: cf260d8773456f043a7ba23171aa589b, type: 2}
---- !u!114 &1228059711088121221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228059711088121224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659be085a27545145a58bd29ee65f793, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCounterpart: {fileID: 0}
-  counterpartFreeingThreshold: 0.5
-  screenWidth: 17.8
-  screenEdgeTag: Boundary
+  settings: {fileID: 0}
 --- !u!114 &1228059711088121217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,3 +220,32 @@ MonoBehaviour:
   playerCenterOfMass: {x: 0, y: -1.5}
   left: 97
   right: 100
+--- !u!114 &1228059711088121221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228059711088121224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659be085a27545145a58bd29ee65f793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCounterpart: {fileID: 0}
+  counterpartFreeingThreshold: 0.5
+  screenWidth: 17.8
+  screenEdgeTag: Boundary
+--- !u!114 &1992880879973773206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228059711088121224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26df60dc90cbdc34791727a7f8916484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenEdgeTag: Boundary
