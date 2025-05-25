@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 1228059711088121220}
   - component: {fileID: 1228059711088121217}
   - component: {fileID: 1228059711088121221}
-  - component: {fileID: 1992880879973773206}
   m_Layer: 0
   m_Name: T.A.R.D.I.S.
   m_TagString: Player
@@ -235,17 +234,4 @@ MonoBehaviour:
   playerCounterpart: {fileID: 0}
   counterpartFreeingThreshold: 0.5
   screenWidth: 17.8
-  screenEdgeTag: Boundary
---- !u!114 &1992880879973773206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228059711088121224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26df60dc90cbdc34791727a7f8916484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   screenEdgeTag: Boundary

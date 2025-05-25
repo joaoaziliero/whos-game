@@ -2,55 +2,41 @@ using System.Collections;
 using UnityEngine;
 
 public class WraparoundMotionConstrainer : MonoBehaviour
-{
-    private Player player;
+{ 
     private Coroutine constrainerRoutine;
-    private float originalSpeedY;
-    private string screenEdgeTag;
-
-    private void Awake()
-    {
-        player = GetComponent<Player>();
-        screenEdgeTag = GetComponent<PlayerWraparound>().screenEdgeTag;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(screenEdgeTag))
+        if (collision.gameObject.TryGetComponent<Player>(out var player) && CheckSimultaneousInputs(player))
         {
-            constrainerRoutine = StartCoroutine(ConstrainVelocity());
+            constrainerRoutine = StartCoroutine(ConstrainVelocity(player));
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(screenEdgeTag) && AreSimultaneousInputs() && constrainerRoutine == null)
+        if (collision.gameObject.TryGetComponent<Player>(out var player) && CheckSimultaneousInputs(player) && constrainerRoutine == null)
         {
-            constrainerRoutine = StartCoroutine(ConstrainVelocity());
+            constrainerRoutine = StartCoroutine(ConstrainVelocity(player));
         }
     }
 
-    private void OnDisable()
+    private IEnumerator ConstrainVelocity(Player player)
     {
-        if (player.settings.speedY < originalSpeedY)
-        {
-            player.settings.ChangeSpeed(0, originalSpeedY);
-        }
-    }
+        var speedY = player.settings.speedY;
+        player.settings.ChangeSpeed(0, -speedY);
 
-    private IEnumerator ConstrainVelocity()
-    {
-        originalSpeedY = player.settings.speedY;
-        player.settings.ChangeSpeed(0, -originalSpeedY);
-
-        yield return new WaitWhile(() => AreSimultaneousInputs());
-        player.settings.ChangeSpeed(0, +originalSpeedY);
+        yield return new WaitWhile(() => CheckSimultaneousInputs(player));
+        player.settings.ChangeSpeed(0, +speedY);
 
         constrainerRoutine = null;
     }
 
-    private bool AreSimultaneousInputs()
+    private bool CheckSimultaneousInputs(Player player)
     {
+        if (player == null)
+            return false;
+
         return Input.GetAxisRaw(player.settings.axisNameX) != 0 && Input.GetAxisRaw(player.settings.axisNameY) != 0;
     }
 }
