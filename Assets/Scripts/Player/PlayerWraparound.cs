@@ -3,9 +3,8 @@ using UnityEngine;
 public class PlayerWraparound : MonoBehaviour
 {
     public GameObject playerCounterpart;
-    public float counterpartFreeingThreshold;
-    public float screenWidth;
     public string screenEdgeTag;
+    public float screenWidth;
 
     private FreedomDegreesManager counterpartFreedom;
 
@@ -26,15 +25,7 @@ public class PlayerWraparound : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag(screenEdgeTag) == false)
-        {
-            return;
-        }
-        else if (Mathf.Abs(transform.position.x) - counterpartFreeingThreshold >= Mathf.Abs(collision.transform.position.x))
-        {
-            counterpartFreedom.SetDependenceStatus(false);
-        }
-        else if (counterpartFreedom.isTransformDependent)
+        if (collision.transform.CompareTag(screenEdgeTag) && counterpartFreedom.isTransformDependent)
         {
             TranslateCounterpart();
         }
@@ -46,6 +37,11 @@ public class PlayerWraparound : MonoBehaviour
         {
             playerCounterpart.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        counterpartFreedom.SetDependenceStatus(false);
     }
 
     private void TranslateCounterpart()
