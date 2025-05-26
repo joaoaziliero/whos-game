@@ -8,25 +8,31 @@ public class Velocimeter2D : MonoBehaviour
 
     private Vector3 previousPosition;
 
+    private void Start()
+    {
+        UpdatePosition();
+    }
+
     private void Update()
     {
         if (Input.GetAxis(motionAxisNameX) != 0 || Input.GetAxis(motionAxisNameY) != 0)
         {
-            UpdateValues();
+            UpdateMeasurement();
+            UpdatePosition();
         }
         else if (previousPosition != transform.position)
         {
-            previousPosition = transform.position;
+            UpdatePosition();
         }
         else if (measurement != Vector2.zero)
         {
-            measurement = Vector2.zero;
+            ClearMeasurement();
         }
     }
 
     private void OnDisable()
     {
-        measurement = Vector2.zero;
+        ClearMeasurement();
     }
 
     private Vector3 CalculateVelocity()
@@ -37,9 +43,18 @@ public class Velocimeter2D : MonoBehaviour
         return instantVelocity;
     }
 
-    private void UpdateValues()
+    private void ClearMeasurement()
+    {
+        measurement = Vector2.zero;
+    }
+
+    private void UpdateMeasurement()
     {
         measurement = CalculateVelocity();
+    }
+
+    private void UpdatePosition()
+    {
         previousPosition = transform.position;
     }
 }
