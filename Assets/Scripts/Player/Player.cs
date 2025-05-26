@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     public SO_PlayerMotionSettings settings;    
     private Velocimeter2D velocimeter;
 
-    private void OnEnable()
+    private void Start()
     {
         velocimeter = gameObject.AddComponent<Velocimeter2D>();
     }
@@ -14,11 +14,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.None) == false)
             MovePlayer();
-    }
-
-    private void OnDisable()
-    {
-        Destroy(velocimeter);
     }
 
     private void MovePlayer()

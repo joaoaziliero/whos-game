@@ -2,17 +2,31 @@ using UnityEngine;
 
 public class Velocimeter2D : MonoBehaviour
 {
-    public Vector2 measurement;
-    private Vector3 previousPosition;
+    public string motionAxisNameX = "Horizontal";
+    public string motionAxisNameY = "Vertical";
+    public Vector2 measurement = Vector2.zero;
 
-    private void Awake()
-    {
-        previousPosition = transform.position;
-    }
+    private Vector3 previousPosition;
 
     private void Update()
     {
-        UpdateValues();
+        if (Input.GetAxis(motionAxisNameX) != 0 || Input.GetAxis(motionAxisNameY) != 0)
+        {
+            UpdateValues();
+        }
+        else if (previousPosition != transform.position)
+        {
+            previousPosition = transform.position;
+        }
+        else if (measurement != Vector2.zero)
+        {
+            measurement = Vector2.zero;
+        }
+    }
+
+    private void OnDisable()
+    {
+        measurement = Vector2.zero;
     }
 
     private Vector3 CalculateVelocity()
