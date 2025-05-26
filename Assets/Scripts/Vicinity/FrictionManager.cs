@@ -2,31 +2,23 @@ using UnityEngine;
 
 public class FrictionManager : MonoBehaviour
 {
-    public string playerTag = "Player";
-
     [Header("Friction Settings")]
     public float horizontalSpeedDifference;
     public float verticalSpeedDifference;
 
-    private void Awake()
-    {
-        horizontalSpeedDifference = Mathf.Abs(horizontalSpeedDifference);
-        verticalSpeedDifference = Mathf.Abs(verticalSpeedDifference);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(playerTag))
+        if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
-            var player = collision.gameObject.GetComponent<Player>();
+            player.settings.ChangeSpeed(-horizontalSpeedDifference, -verticalSpeedDifference);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(playerTag))
+        if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
-            var player = collision.gameObject.GetComponent<Player>();
+            player.settings.ChangeSpeed(+horizontalSpeedDifference, +verticalSpeedDifference);
         }
     }
 }

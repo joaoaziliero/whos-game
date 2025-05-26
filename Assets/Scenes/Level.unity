@@ -341,8 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0312333f41199d046b8c8ad7d390a296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTag: Player
-  horizontalSpeedDifference: 0
+  horizontalSpeedDifference: 5
   verticalSpeedDifference: 0
 --- !u!1001 &2090925768
 PrefabInstance:
